@@ -4,6 +4,7 @@
 *.so
 
 # Folders
+.vagrant
 _obj
 _test
 
