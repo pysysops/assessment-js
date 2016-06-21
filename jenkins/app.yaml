@@ -69,5 +69,5 @@
 
     publishers:
       - archive:
-          artifacts: 'rpms/*.rpm'
+          artifacts: 'rpms/RPMS/x86_64/*.rpm'
           only-if-success: true
