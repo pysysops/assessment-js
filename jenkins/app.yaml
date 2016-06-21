@@ -27,6 +27,11 @@
         cd $WORKSPACE/app
         go build -o http
 
+    publishers:
+      - archive:
+          artifacts: 'app/http'
+          only-if-success: true
+
 - job:
     name: app-package
     description: Package the go application
