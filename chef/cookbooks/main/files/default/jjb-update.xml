@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
   <description>Task to update Jenkins on jjb changes.&lt;!-- Managed by Jenkins Job Builder --&gt;</description>
@@ -47,6 +48,7 @@
       <command>#!/bin/bash
 set -e
 cd $WORKSPACE
+PATH=$PATH:/opt/rh/python27/root/usr/bin/
 http_proxy= jenkins-jobs test -o &quot;$(mktemp -d /tmp/jjb-update.XXXX)&quot; jenkins
 http_proxy= jenkins-jobs --ignore-cache --flush-cache update --delete-old jenkins
 </command>
@@ -54,3 +56,4 @@ http_proxy= jenkins-jobs --ignore-cache --flush-cache update --delete-old jenkin
   </builders>
   <publishers/>
   <buildWrappers/>
+</project>
