@@ -23,5 +23,6 @@
      - shell: |
         #!/bin/bash
         set -e
+        PATH=$PATH:/usr/lib/go/bin:/usr/local/go/bin/
         cd $WORKSPACE/app
         go build -o http
