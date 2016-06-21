@@ -3,8 +3,6 @@ Version: 1.0
 Release : %{?BUILD_NUMBER}
 Summary: Simple HTTP app in Go
 License: None
-
-BuildArch: noarch
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
 %description
