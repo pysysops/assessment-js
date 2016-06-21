@@ -8,6 +8,21 @@ include_recipe 'golang'
 python_runtime '2'
 python_package 'jenkins-job-builder'
 
+directory '/etc/jenkins_jobs' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create
+end
+
+cookbook_file '/etc/jenkins_jobs/jenkins_jobs.ini' do
+  source 'jenkins_jobs.ini'
+  owner 'root'
+  group 'jenkins'
+  mode '0640'
+  action :create
+end
+
 include_recipe 'jenkins::java'
 include_recipe 'jenkins::master'
 
@@ -16,7 +31,7 @@ plugins = [ 'git', 'greenballs' ]
 
 plugins.each do |plugin|
   jenkins_plugin plugin do
-    notifies :restart, 'service[jenkins]', :immediately
+    notifies :restart, 'service[jenkins]'
   end
 end
 

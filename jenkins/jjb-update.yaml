@@ -3,12 +3,14 @@
     description: Task to update Jenkins on jjb changes.
     defaults: global
     node: master
-    triggers:
-     - pollscm: "* * * * *"
+    properties:
+      - build-discarder:
+          days-to-keep: 2
+          num-to-keep: 1
 
-    logrotate:
-      daysToKeep: 2
-      artifactNumToKeep: 1
+    triggers:
+     - pollscm:
+         cron: "* * * * *"
 
     scm:
      - git:
@@ -21,6 +23,7 @@
      - shell: |
         #!/bin/bash
         set -e
+        PATH=$PATH:/opt/rh/python27/root/usr/bin/
         cd $WORKSPACE
         http_proxy= jenkins-jobs test -o "$(mktemp -d /tmp/jjb-update.XXXX)" jenkins
         http_proxy= jenkins-jobs --ignore-cache --flush-cache update --delete-old jenkins
