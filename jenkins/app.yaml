@@ -25,14 +25,7 @@
         set -e
         PATH=$PATH:/usr/lib/go/bin:/usr/local/go/bin/
         cd $WORKSPACE/app
-        mkdir -p usr/local/bin
-        go build -o usr/local/bin/http
-        tar -cvzf app-$BUILD_NUMBER.tar.gz usr/
-
-    publishers:
-      - archive:
-          artifacts: 'app/*.tar.gz'
-          only-if-success: true
+        go build -o http
 
 - job:
     name: app-package
@@ -59,13 +52,15 @@
     builders:
      - copyartifact:
          project: app-build
-         filter: 'app/*.tar.gz'
+         filter: 'app/http'
          flatten: true
          target: rpms/SOURCES
+
      - shell: |
         #!/bin/bash
         set -e
-        ls -l rpms/SOURCES
+        cd $WORKSPACE/rpms
+        rpmbuild --define '_topdir '`pwd` --define 'BUILD_NUMBER '$BUILD_NUMBER -ba SPECS/app.spec
 
     publishers:
       - archive:
