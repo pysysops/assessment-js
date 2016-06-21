@@ -14,3 +14,7 @@ services:
     build: app
     environment:
       - VIRTUAL_HOST=app.service
+      - VIRTUAL_PORT=8888
+      - PORT=8888
+    expose:
+      - '8888'
