@@ -31,5 +31,5 @@
 
     publishers:
       - archive:
-          artifacts: 'app-*.tar.gz'
+          artifacts: 'app/*.tar.gz'
           only-if-success: true
