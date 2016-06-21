@@ -8,9 +8,11 @@
   "platforms": {
   },
   "dependencies": {
-    "yum-centos": "~> 0.4.12",
+    "hostsfile": "~> 2.4.5",
     "nginx": "~> 2.7.6",
-    "golang": "~> 1.7.0"
+    "golang": "~> 1.7.0",
+    "jenkins": "~> 2.6.0",
+    "poise-python": "~> 1.4.0"
   },
   "recommendations": {
   },
