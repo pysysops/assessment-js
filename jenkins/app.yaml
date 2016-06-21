@@ -27,4 +27,9 @@
         cd $WORKSPACE/app
         mkdir -p usr/local/bin
         go build -o usr/local/bin/http
-        
+        tar -cvzf app-$BUILD_NUMBER.tar.gz usr/
+
+    publishers:
+      - archive:
+          artifacts: 'app-*.tar.gz'
+          only-if-success: true
