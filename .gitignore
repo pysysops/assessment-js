@@ -5,8 +5,7 @@
 
 # Folders and misc files
 Berksfile.lock
-chef/cookbooks/*
-!chef/cookbooks/.gitkeep
+chef/cookbooks
 .vagrant
 _obj
 _test
