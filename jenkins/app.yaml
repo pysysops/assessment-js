@@ -25,4 +25,6 @@
         set -e
         PATH=$PATH:/usr/lib/go/bin:/usr/local/go/bin/
         cd $WORKSPACE/app
-        go build -o http
+        mkdir -p usr/local/bin
+        go build -o usr/local/bin/http
+        
