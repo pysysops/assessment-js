@@ -3,7 +3,8 @@
 *.a
 *.so
 
-# Folders
+# Folders and misc files
+Berksfile.lock
 chef/cookbooks/*
 !chef/cookbooks/.gitkeep
 .vagrant
