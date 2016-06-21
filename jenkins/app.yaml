@@ -57,11 +57,17 @@
            - master
 
     builders:
+     - copyartifact:
+         project: app-build
+         filter: 'app/*.tar.gz'
+         flatten: true
+         target: rpms/SOURCES
      - shell: |
         #!/bin/bash
         set -e
+        ls -l rpms/SOURCES
 
     publishers:
       - archive:
-          artifacts: 'app/*.tar.gz'
+          artifacts: 'rpms/*.rpm'
           only-if-success: true

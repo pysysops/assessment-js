@@ -34,7 +34,7 @@ include_recipe 'jenkins::java'
 include_recipe 'jenkins::master'
 
 # Useful plugins
-plugins = [ 'git', 'greenballs' ]
+plugins = [ 'git', 'greenballs', 'copyartifact', 'artifactdeployer' ]
 
 plugins.each do |plugin|
   jenkins_plugin plugin do
