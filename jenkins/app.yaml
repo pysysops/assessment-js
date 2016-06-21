@@ -1,0 +1,27 @@
+- job:
+    name: app-build
+    description: Build the go application
+    defaults: global
+    node: master
+    properties:
+      - build-discarder:
+          days-to-keep: 2
+          num-to-keep: 5
+
+    triggers:
+     - pollscm:
+         cron: "* * * * *"
+
+    scm:
+     - git:
+        url: https://github.com/pysysops/assessment-js.git
+        skip-tag: true
+        branches:
+           - master
+
+    builders:
+     - shell: |
+        #!/bin/bash
+        set -e
+        cd $WORKSPACE/app
+        go build -o http
