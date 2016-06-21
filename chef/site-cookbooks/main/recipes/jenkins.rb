@@ -12,8 +12,13 @@ include_recipe 'jenkins::java'
 include_recipe 'jenkins::master'
 
 # Useful plugins
-jenkins_plugin 'greenballs'
-jenkins_plugin 'git'
+plugins = [ 'git', 'greenballs' ]
+
+plugins.each do |plugin|
+  jenkins_plugin plugin do
+    notifies :restart, 'service[jenkins]', :immediately
+  end
+end
 
 # Base job to update jobs
 xml = File.join(Chef::Config[:file_cache_path], 'cookbooks/main/files/default/jjb-update.xml')
