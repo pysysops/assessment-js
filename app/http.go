@@ -40,9 +40,21 @@ func Init(
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
+  // Create log line from request as will be used a number of times
+  rlog := "Proxy: " + r.RemoteAddr + " RealIP: " + r.Header.Get("X-Real-Ip") +
+          " Host: " + r.Host + " Method: " + r.Method + " Request: " + r.RequestURI +
+          " User-Agent: " + r.Header.Get("User-Agent")
+
+  //Really simple 404 / logging at ERROR level
+  if r.URL.Path != "/" {
+    http.NotFound(w, r)
+    Error.Println(rlog)
+    return
+  }
+
   h, _ := os.Hostname()
-  fmt.Fprintf(w, "Hi there, I'm served from %s!", h)
-  Info.Println("Request served by:", h)
+  fmt.Fprintf(w, "Hi there, I'm served from %s!\n", h)
+  Info.Println(rlog)
 }
 
 func main() {
@@ -56,8 +68,8 @@ func main() {
   if port == "" {
       port = "8484"
   }
+  
   Warning.Println("Listening on port:", port)
-
   http.HandleFunc("/", handler)
   http.ListenAndServe(":" + port , nil)
 }
