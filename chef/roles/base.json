@@ -1,0 +1,7 @@
+{
+  "name": "base",
+  "description": "Base configuration applied to all nodes",
+  "run_list": [
+    "recipe[main::default]"
+  ]
+}

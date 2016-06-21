@@ -1,0 +1,8 @@
+{
+  "name": "web_proxy",
+  "description": "Nginx reverse proxy role",
+  "run_list": [
+    "role[base]",
+    "role[web]"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "web",
+  "description": "Base Nginx role",
+  "run_list": [
+    "role[base]"
+  ]
+}
