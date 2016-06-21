@@ -6,29 +6,24 @@
 PRIVATE_SUBNET="172.16.252"
 
 nodes = {
-  :nginx_proxy => {
-    :hostname => "nginx-proxy",
+  :web_01 => {
+    :hostname => "web-01",
     :ipaddress => "#{PRIVATE_SUBNET}.10",
-    :run_list => [ "recipe[main::default]" ],
+    :run_list => [ "role[web_proxy]" ],
     :forwardport => {
       :guest => 80,
       :host => 8080
     }
   },
-  :consul => {
-    :hostname => "consul",
-    :ipaddress => "#{PRIVATE_SUBNET}.15",
-    :run_list => [ "recipe[main::default]" ]
-  },
   :app_01 => {
     :hostname => "app-01",
     :ipaddress => "#{PRIVATE_SUBNET}.20",
-    :run_list => [ "recipe[main::default]" ]
+    :run_list => [ "role[app]" ]
   },
   :app_02 => {
     :hostname => "app-02",
     :ipaddress => "#{PRIVATE_SUBNET}.21",
-    :run_list => [ "recipe[main::default]" ]
+    :run_list => [ "role[app]" ]
   }
 }
 

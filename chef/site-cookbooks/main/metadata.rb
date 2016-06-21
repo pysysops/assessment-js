@@ -7,8 +7,6 @@ long_description 'Chef configuration for assessment'
 
 version          '0.1.0'
 
-
-depends 'yum-centos', '~> 0.4.12'
-
+depends 'hostsfile', '~> 2.4.5'
 depends 'nginx', '~> 2.7.6'
 depends 'golang', '~> 1.7.0'
