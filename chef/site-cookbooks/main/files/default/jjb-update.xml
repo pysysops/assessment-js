@@ -1,16 +1,23 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<project>
+<?xml version="1.0" encoding="UTF-8"?><project>
   <actions/>
   <description>Task to update Jenkins on jjb changes.&lt;!-- Managed by Jenkins Job Builder --&gt;</description>
-  <logRotator class="hudson.tasks.LogRotator">
-    <daysToKeep>2</daysToKeep>
-    <numToKeep>-1</numToKeep>
-    <artifactDaysToKeep>-1</artifactDaysToKeep>
-    <artifactNumToKeep>1</artifactNumToKeep>
-  </logRotator>
   <keepDependencies>false</keepDependencies>
-  <properties/>
-  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.4.0">
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <concurrentBuild>false</concurrentBuild>
+  <assignedNode>master</assignedNode>
+  <canRoam>false</canRoam>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>2</daysToKeep>
+        <numToKeep>1</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM">
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
@@ -24,32 +31,42 @@
         <name>master</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
+    <excludedUsers/>
+    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+    <disableSubmodules>false</disableSubmodules>
+    <recursiveSubmodules>false</recursiveSubmodules>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <authorOrCommitter>false</authorOrCommitter>
+    <wipeOutWorkspace>true</wipeOutWorkspace>
+    <pruneBranches>false</pruneBranches>
+    <remotePoll>false</remotePoll>
     <gitTool>Default</gitTool>
     <submoduleCfg class="list"/>
+    <relativeTargetDir/>
+    <reference/>
+    <gitConfigName/>
+    <gitConfigEmail/>
+    <skipTag>true</skipTag>
+    <scmName/>
+    <useShallowClone>false</useShallowClone>
+    <ignoreNotifyCommit>false</ignoreNotifyCommit>
     <extensions>
       <hudson.plugins.git.extensions.impl.WipeWorkspace/>
     </extensions>
   </scm>
-  <assignedNode>master</assignedNode>
-  <canRoam>false</canRoam>
-  <disabled>false</disabled>
-  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
-  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers>
+  <triggers class="vector">
     <hudson.triggers.SCMTrigger>
       <spec>* * * * *</spec>
       <ignorePostCommitHooks>false</ignorePostCommitHooks>
     </hudson.triggers.SCMTrigger>
   </triggers>
-  <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
       <command>#!/bin/bash
 set -e
-cd $WORKSPACE
 PATH=$PATH:/opt/rh/python27/root/usr/bin/
-http_proxy= jenkins-jobs test -o &quot;$(mktemp -d /tmp/jjb-update.XXXX)&quot; jenkins
+cd $WORKSPACE
+http_proxy= jenkins-jobs test -o "$(mktemp -d /tmp/jjb-update.XXXX)" jenkins
 http_proxy= jenkins-jobs --ignore-cache --flush-cache update --delete-old jenkins
 </command>
     </hudson.tasks.Shell>
