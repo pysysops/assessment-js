@@ -15,6 +15,15 @@ nodes = {
       :host => 8080
     }
   },
+  :jenkins_01 => {
+    :hostname => "jenkins-01",
+    :ipaddress => "#{PRIVATE_SUBNET}.15",
+    :run_list => [ "role[jenkins]" ],
+    :forwardport => {
+      :guest => 8080,
+      :host => 8090
+    }
+  },
   :app_01 => {
     :hostname => "app-01",
     :ipaddress => "#{PRIVATE_SUBNET}.20",

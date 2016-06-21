@@ -1,0 +1,17 @@
+{
+  "name": "jenkins",
+  "description": "Typical Jenkins build host",
+  "default_attributes": {
+    "jenkins": {
+      "master": {
+        "install_method": "package",
+        "jvm_options": "-Djenkins.install.runSetupWizard=false"
+      }
+    }
+  },
+  "run_list": [
+    "role[base]",
+    "recipe[main::jenkins]",
+    "role[web_proxy]"
+  ]
+}

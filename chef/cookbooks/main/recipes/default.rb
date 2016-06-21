@@ -13,6 +13,7 @@ hosts.each do |hostentry|
   hostsfile_entry host['address'] do
     hostname  host['hostname']
     action    :create_if_missing
+    aliases    host['aliases']
   end
 
 end

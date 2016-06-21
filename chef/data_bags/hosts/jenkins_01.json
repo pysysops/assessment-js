@@ -1,0 +1,6 @@
+{
+  "id": "jenkins_01",
+  "address": "172.16.252.15",
+  "hostname": "jenkins-01",
+  "aliases": ["builds"]
+}
