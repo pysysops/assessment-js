@@ -4,6 +4,8 @@
 *.so
 
 # Folders
+chef/cookbooks/*
+!chef/cookbooks/.gitkeep
 .vagrant
 _obj
 _test
