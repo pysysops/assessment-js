@@ -8,6 +8,13 @@ include_recipe 'golang'
 python_runtime '2'
 python_package 'jenkins-job-builder'
 
+package 'Install rpm-build' do
+  case node[:platform]
+  when 'redhat', 'centos'
+    package_name 'rpm-build'
+  end
+end
+
 directory '/etc/jenkins_jobs' do
   owner 'root'
   group 'root'

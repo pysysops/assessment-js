@@ -33,3 +33,35 @@
       - archive:
           artifacts: 'app/*.tar.gz'
           only-if-success: true
+
+- job:
+    name: app-package
+    description: Package the go application
+    defaults: global
+    node: master
+    properties:
+      - build-discarder:
+          days-to-keep: 2
+          num-to-keep: 5
+
+    triggers:
+     - reverse:
+         jobs: app-build
+         result: success
+
+    scm:
+     - git:
+        url: https://github.com/pysysops/assessment-js.git
+        skip-tag: true
+        branches:
+           - master
+
+    builders:
+     - shell: |
+        #!/bin/bash
+        set -e
+
+    publishers:
+      - archive:
+          artifacts: 'app/*.tar.gz'
+          only-if-success: true
