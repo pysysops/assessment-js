@@ -75,7 +75,7 @@ dependency resolution issue that was becoming time consuming to resolve. I had
 to fall back to a very simple recipe (install package, replace config, start service).
 
 ### TODO: Tests
-I'd love to spend a few days writing ServerSpec tests for Kitchen...
+I'd love to spend a some time writing ServerSpec tests for Kitchen...
 
 ## Continuous Delivery
 At first it was tempting to just build the Go application on each app server, but
@@ -110,4 +110,4 @@ Ideally it would be great to trigger a deployment of a new artifact (yum package
 from Jenkins with Ansible or even something as simple as pssh. I believe this is
 outside of the scope of this MVP.
 
-# Note - Everything has bene thrown into one single repo for simplicity of assessment in reality, this repo should be split into multiple repositories. 
+# Note - Everything has bene thrown into one single repo for simplicity of assessment in reality, this repo should be split into multiple repositories.
