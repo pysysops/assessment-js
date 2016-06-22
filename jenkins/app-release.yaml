@@ -26,3 +26,17 @@
               remote: '/var/www/html/repo/'
               fail-no-files: true
           deploy-if-fail: false
+          
+      - postbuildscript:
+          builders:
+            - shell: |
+                #!/bin/bash
+                set -e
+                cd /var/www/html/repo/
+                createrepo .
+
+      - workspace-cleanup:
+          include:
+            - "*.rpm"
+          clean-if:
+            - success: true

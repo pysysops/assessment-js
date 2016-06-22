@@ -28,10 +28,10 @@
           target: rpms/SOURCES
 
       - shell: |
-         #!/bin/bash
-         set -e
-         cd $WORKSPACE/rpms
-         rpmbuild --define '_topdir '`pwd` --define 'BUILD_NUMBER '$BUILD_NUMBER -ba SPECS/http-app.spec
+          #!/bin/bash
+          set -e
+          cd $WORKSPACE/rpms
+          rpmbuild --define '_topdir '`pwd` --define 'BUILD_NUMBER '$BUILD_NUMBER -ba SPECS/http-app.spec
 
     publishers:
       - archive:

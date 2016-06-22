@@ -39,7 +39,7 @@ cookbook_file '/etc/jenkins_jobs/jenkins_jobs.ini' do
 end
 
 # Useful plugins
-plugins = [ 'git', 'greenballs', 'copyartifact', 'artifactdeployer' ]
+plugins = [ 'git', 'greenballs', 'copyartifact', 'artifactdeployer', 'ws-cleanup' ]
 
 plugins.each do |plugin|
   jenkins_plugin plugin do
