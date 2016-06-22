@@ -3,6 +3,9 @@
 # Recipe:: default
 #
 
+# Assuming we are using only CentOS
+include_recipe 'yum-epel'
+
 # Add IPs to /etc/hosts for now to get MVP running
 hosts = data_bag('hosts')
 

@@ -1,0 +1,39 @@
+- job:
+    name: app-package
+    description: Package the go application
+    defaults: global
+    node: master
+    properties:
+      - build-discarder:
+          days-to-keep: 2
+          num-to-keep: 5
+
+    triggers:
+      - reverse:
+          jobs: app-build
+          result: success
+
+    scm:
+      - git:
+          url: https://github.com/pysysops/assessment-js.git
+          skip-tag: true
+          branches:
+            - master
+
+    builders:
+      - copyartifact:
+          project: app-build
+          filter: 'app/http'
+          flatten: true
+          target: rpms/SOURCES
+
+      - shell: |
+         #!/bin/bash
+         set -e
+         cd $WORKSPACE/rpms
+         rpmbuild --define '_topdir '`pwd` --define 'BUILD_NUMBER '$BUILD_NUMBER -ba SPECS/http-app.spec
+
+    publishers:
+      - archive:
+          artifacts: 'rpms/RPMS/x86_64/*.rpm'
+          only-if-success: true

@@ -15,6 +15,15 @@ package 'Install rpm-build' do
   end
 end
 
+# Useful for interacting with other servers (deployments, tasks etc)
+package 'pssh' do
+  action :install
+end
+
+
+include_recipe 'jenkins::java'
+include_recipe 'jenkins::master'
+
 directory '/etc/jenkins_jobs' do
   owner 'root'
   group 'root'
@@ -29,9 +38,6 @@ cookbook_file '/etc/jenkins_jobs/jenkins_jobs.ini' do
   mode '0640'
   action :create
 end
-
-include_recipe 'jenkins::java'
-include_recipe 'jenkins::master'
 
 # Useful plugins
 plugins = [ 'git', 'greenballs', 'copyartifact', 'artifactdeployer' ]

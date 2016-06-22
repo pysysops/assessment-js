@@ -1,0 +1,20 @@
+- job:
+    name: app-release
+    description: Deploy package to yum repo
+    defaults: global
+    node: master
+    properties:
+      - build-discarder:
+          days-to-keep: 2
+          num-to-keep: 5
+
+    triggers:
+      - reverse:
+          jobs: app-package
+          result: success
+
+    builders:
+      - copyartifact:
+          project: app-package
+          filter: 'rpms/RPMS/x86_64/*.rpm'
+          flatten: true
