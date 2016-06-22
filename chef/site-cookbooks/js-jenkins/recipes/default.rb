@@ -11,7 +11,7 @@
 python_runtime '2'
 python_package 'jenkins-job-builder'
 
-build_packages = [ 'rpm-build', 'createrepo', 'pssh', 'ansible', 'golang' ]
+build_packages = [ 'rpm-build', 'createrepo', 'pssh', 'ansible', 'golang', 'git' ]
 build_packages.each do |build_package|
   package build_package do
     action :install

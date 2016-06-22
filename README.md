@@ -74,6 +74,12 @@ cookbooks as wrapper cookbooks. Unfortunately the nginx cookbook caused some
 dependency resolution issue that was becoming time consuming to resolve. I had
 to fall back to a very simple recipe (install package, replace config, start service).
 
+### Service Discovery
+It would be quite possible to have consul or etcd generated nginx configuration
+but I feel that might be going a bit too far on this occasion. nginx uses the
+hostnames app-01 and app-02 (configured in role which isn't ideal) which are in
+the hosts file of each server (from the hosts data_bag).
+
 ### TODO: Tests
 I'd love to spend a some time writing ServerSpec tests for Kitchen...
 
