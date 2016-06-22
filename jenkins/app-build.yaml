@@ -25,9 +25,9 @@
          set -e
          PATH=$PATH:/usr/lib/go/bin:/usr/local/go/bin/
          cd $WORKSPACE/app
-         go build -o http
+         go build -o http-app
 
     publishers:
       - archive:
-          artifacts: 'app/http'
+          artifacts: 'app/http-app'
           only-if-success: true

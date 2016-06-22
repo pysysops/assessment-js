@@ -1,3 +1,6 @@
 source 'https://supermarket.chef.io'
 
-cookbook 'main', path: './site-cookbooks/main'
+cookbook 'js-base', path: './site-cookbooks/js-base'
+cookbook 'js-jenkins', path: './site-cookbooks/js-jenkins'
+cookbook 'js-nginx', path: './site-cookbooks/js-nginx'
+cookbook 'js-app', path: './site-cookbooks/js-app'

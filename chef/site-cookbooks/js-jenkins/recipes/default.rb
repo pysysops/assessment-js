@@ -1,6 +1,10 @@
 #
-# Cookbook Name:: main
-# Recipe:: jenkins
+# Cookbook Name:: js-jenkins
+# Recipe:: default
+#
+# Copyright (C) 2016 YOUR_NAME
+#
+# All rights reserved - Do Not Redistribute
 #
 
 # deps for builds
@@ -8,19 +12,14 @@ include_recipe 'golang'
 python_runtime '2'
 python_package 'jenkins-job-builder'
 
-package 'Install rpm-build' do
-  case node[:platform]
-  when 'redhat', 'centos'
-    package_name 'rpm-build'
+build_packages = [ 'rpm-build', 'createrepo', 'pssh', 'ansible' ]
+build_packages.each do |build_package|
+  package build_package do
+    action :install
   end
 end
 
-# Useful for interacting with other servers (deployments, tasks etc)
-package 'pssh' do
-  action :install
-end
-
-
+node.set['jenkins']['master']['install_method'] = 'package'
 include_recipe 'jenkins::java'
 include_recipe 'jenkins::master'
 
@@ -48,8 +47,8 @@ plugins.each do |plugin|
   end
 end
 
-# Base job to update jobs
-xml = File.join(Chef::Config[:file_cache_path], 'cookbooks/main/files/default/jjb-update.xml')
+# Base job to update jobs - Could / should template this
+xml = File.join(Chef::Config[:file_cache_path], 'cookbooks/js-jenkins/files/default/jjb-update.xml')
 jenkins_job 'jjb-update' do
   config xml
 end

@@ -23,7 +23,7 @@
     builders:
       - copyartifact:
           project: app-build
-          filter: 'app/http'
+          filter: 'app/http-app'
           flatten: true
           target: rpms/SOURCES
 

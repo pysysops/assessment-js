@@ -1,7 +1,8 @@
 {
-  "name": "web",
+  "name": "nginx",
   "description": "Base Nginx role",
   "run_list": [
-    "role[base]"
+    "role[base]",
+    "recipe[js-nginx]"
   ]
 }
