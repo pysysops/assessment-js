@@ -10,6 +10,10 @@ package 'nginx'  do
   action :install
 end
 
+service 'nginx' do
+  action [ :enable, :start ]
+end
+
 directory '/var/www' do
   owner 'nginx'
   group 'nginx'
