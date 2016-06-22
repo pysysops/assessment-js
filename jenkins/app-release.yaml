@@ -23,6 +23,6 @@
       - artifact-deployer:
           entries:
             - files: '*.rpm'
-            - remote: '/var/www/html/repo/'
-            - fail-no-files: true
+              remote: '/var/www/html/repo/'
+              fail-no-files: true
           deploy-if-fail: false
