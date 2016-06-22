@@ -14,7 +14,7 @@ directory '/var/www/html/repo' do
   action :create
 end
 
-cookbook_file '/etc/nginx/nginx.conf' do
+cookbook_file '/etc/nginx/conf.d/repo.conf' do
   source 'yumrepo_nginx.conf'
   owner 'root'
   group 'root'

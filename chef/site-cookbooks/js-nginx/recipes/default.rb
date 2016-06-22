@@ -6,8 +6,18 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+
 package 'nginx'  do
   action :install
+end
+
+cookbook_file '/etc/nginx/nginx.conf' do
+  source 'nginx.conf'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  action :create
+  notifies :restart, 'service[nginx]'
 end
 
 service 'nginx' do

@@ -6,33 +6,33 @@
 PRIVATE_SUBNET="172.16.252"
 
 nodes = {
-  :web_01 => {
-    :hostname => "web-01",
-    :ipaddress => "#{PRIVATE_SUBNET}.10",
-    :run_list => [ "role[web_proxy]" ],
-    :forwardport => {
-      :guest => 80,
-      :host => 8080
-    }
-  },
   :jenkins_01 => {
     :hostname => "jenkins-01",
     :ipaddress => "#{PRIVATE_SUBNET}.15",
-    :run_list => [ "role[jenkins]" ],
+    :role => "jenkins",
     :forwardport => {
       :guest => 8080,
       :host => 8090
     }
   },
+  :web_01 => {
+    :hostname => "web-01",
+    :ipaddress => "#{PRIVATE_SUBNET}.10",
+    :role => "nginx",
+    :forwardport => {
+      :guest => 80,
+      :host => 8080
+    }
+  },
   :app_01 => {
     :hostname => "app-01",
     :ipaddress => "#{PRIVATE_SUBNET}.20",
-    :run_list => [ "role[app]" ]
+    :role => "app"
   },
   :app_02 => {
     :hostname => "app-02",
     :ipaddress => "#{PRIVATE_SUBNET}.21",
-    :run_list => [ "role[app]" ]
+    :role => "app"
   }
 }
 
@@ -53,10 +53,8 @@ Vagrant.configure("2") do |config|
         chef.cookbooks_path = "chef/cookbooks"
         chef.data_bags_path = "chef/data_bags"
         chef.roles_path = "chef/roles"
-        chef.run_list = options[:run_list]
         chef.log_level = :warn
-        # Or maybe a role
-        #chef.add_role "web"
+        chef.add_role options[:role]
       end
     end
   end
