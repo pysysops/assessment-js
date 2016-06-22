@@ -17,7 +17,7 @@ Install Vagrant and run:
 ```
 make vagrant
 ```
-You will (eventually) get curl request output. Visit http://localhost:8090 to
+You will (eventually) get curl request output. Visit [http://localhost:8090](http://localhost:8090) to
 see Jenkins in action.
 
 ## Run the project
@@ -97,7 +97,7 @@ The jobs are configured in a pipeline and trigger as follows:
 
 The result is an rpm package in a yum repo available from the app servers.
 
-To view the Jenkins Dashboard open: http://localhost:8090 in your browser of choice.
+To view the Jenkins Dashboard open: [http://localhost:8090](http://localhost:8090) in your browser of choice.
 
 ## Code Changes
 The original Go application was very simple but I wanted to make a few changes:
