@@ -38,7 +38,8 @@ Hi there, I'm served from app-02!
 ```
 This takes about 12 mins due to the serial fashion in which Vagrant runs.
 
-Visit [http://localhost:8090](http://localhost:8090) to see Jenkins in action.
+Visit [http://localhost:8090](http://localhost:8090) to see Jenkins in action
+(when jenkins_01 has finished provisioning).
 
 ## Run the project
 There are 2 ways to run the project, by running `make` you can see:
