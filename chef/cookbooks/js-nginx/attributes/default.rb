@@ -1,0 +1,3 @@
+# Default attributes for use in templates etc...
+default['js-nginx']['proxy']['host'] = node['hostname']
+default['js-nginx']['proxy']['upstreams'] = [ '127.0.0.1:8080' ]

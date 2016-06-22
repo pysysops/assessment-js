@@ -1,0 +1,45 @@
+DEPENDENCIES
+  js-app
+    path: site-cookbooks/js-app
+  js-base
+    path: site-cookbooks/js-base
+  js-jenkins
+    path: site-cookbooks/js-jenkins
+  js-nginx
+    path: site-cookbooks/js-nginx
+
+GRAPH
+  apt (4.0.1)
+    compat_resource (>= 12.10)
+  compat_resource (12.10.6)
+  golang (1.7.0)
+  hostsfile (2.4.5)
+  jenkins (2.6.0)
+    apt (>= 2.0)
+    runit (~> 1.7)
+    yum (~> 3.0)
+  js-app (0.1.0)
+    yum (>= 0.0.0)
+  js-base (0.1.0)
+    hostsfile (~> 2.4.5)
+    yum-epel (>= 0.0.0)
+  js-jenkins (0.1.0)
+    golang (~> 1.7.0)
+    jenkins (~> 2.6.0)
+    poise-python (~> 1.4.0)
+  js-nginx (0.1.0)
+  packagecloud (0.2.3)
+  poise (2.7.1)
+  poise-archive (1.2.0)
+    poise (~> 2.6)
+  poise-languages (1.4.0)
+    poise (~> 2.5)
+    poise-archive (~> 1.0)
+  poise-python (1.4.0)
+    poise (~> 2.7)
+    poise-languages (~> 1.3)
+  runit (1.7.8)
+    packagecloud (>= 0.0.0)
+  yum (3.11.0)
+  yum-epel (0.7.0)
+    yum (>= 3.6.3)

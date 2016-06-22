@@ -1,0 +1,23 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+  cookbook_path: cookbooks
+  roles_path: roles
+  data_bags_path: data_bags
+
+platforms:
+  - name: centos-7.2
+
+suites:
+  - name: jenkins
+    run_list:
+      - role[jenkins]
+  - name: web
+    run_list:
+      - role[nginx]
+  - name: app
+    run_list:
+      - role[app]

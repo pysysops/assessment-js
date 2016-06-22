@@ -1,0 +1,15 @@
+
+upstream apps {
+<% @proxy_upstreams.each do |upstream| -%>
+	server <%= upstream %>;
+<% end %>
+}
+
+server {
+    listen       80;
+    server_name  <%= @host %>;
+
+    location / {
+      proxy_pass http://apps;
+    }
+}

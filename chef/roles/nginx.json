@@ -1,8 +1,19 @@
 {
   "name": "nginx",
   "description": "Base Nginx role",
+  "override_attributes": {
+    "js-nginx": {
+      "proxy": {
+        "upstreams": [
+          "app-01:8484",
+          "app-02:8484"
+        ]
+      }
+    }
+  },
   "run_list": [
     "role[base]",
-    "recipe[js-nginx]"
+    "recipe[js-nginx]",
+    "recipe[js-nginx::proxy]"
   ]
 }

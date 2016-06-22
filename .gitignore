@@ -4,8 +4,6 @@
 *.so
 
 # Folders and misc files
-Berksfile.lock
-chef/cookbooks
 .vagrant
 _obj
 _test
@@ -25,3 +23,5 @@ _testmain.go
 *.exe
 *.test
 *.prof
+.kitchen/
+.kitchen.local.yml
