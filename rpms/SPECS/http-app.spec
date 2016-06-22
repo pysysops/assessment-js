@@ -16,13 +16,14 @@ Simple HTTP app in Go
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/local/bin %{buildroot}/etc/supervisord.d/
+mkdir -p %{buildroot}/usr/local/bin %{buildroot}/etc/supervisord.d
 cp ../SOURCES/http-app %{buildroot}/usr/local/bin/
 cp ../SOURCES/http-app.ini %{buildroot}/etc/supervisord.d/
 chmod 755 %{buildroot}/usr/local/bin/http-app
 chmod 644 %{buildroot}/etc/supervisord.d/http-app.ini
 
 %post
+mkdir -p /var/log/http-app
 /sbin/service supervisord restart
 
 %files
