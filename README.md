@@ -111,9 +111,11 @@ The original Go application was very simple but I wanted to make a few changes:
 * Make the port it runs on an environment variable (default: 8484).
 
 
-## TODO - Deployments
-Ideally it would be great to trigger a deployment of a new artifact (yum package)
-from Jenkins with Ansible or even something as simple as pssh. I believe this is
-outside of the scope of this MVP.
+## Things not taken into consideration
+Here's a non-exhaustive list of things that haven't been taken into consideration:
+* Security - no firewall rules, no SELinux, no IDS / IPS, no users / sudo, no SSH configs
+* Monitoring
+* Optimisation - no OS, no NGINX / app optimisations
+* Basic OS config - no NTP / DNS config, locale / timezone not set etc...
 
-# Note - Everything has bene thrown into one single repo for simplicity of assessment. In reality, this repo would be split into multiple repositories.
+# Note - Everything has been thrown into one single repo for simplicity of assessment. In reality, this repo would be split into multiple repositories.
