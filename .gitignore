@@ -4,7 +4,6 @@
 *.so
 
 # Folders and misc files
-Berksfile.lock
 chef/cookbooks
 .vagrant
 _obj
