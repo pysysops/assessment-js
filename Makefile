@@ -25,6 +25,8 @@ docker-destroy:
 	docker-compose down
 
 vagrant:
+	vagrant up jenkins_01
+	@sleep 30
 	vagrant up
 	@echo
 	curl localhost:8080
