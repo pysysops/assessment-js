@@ -4,7 +4,6 @@
 *.so
 
 # Folders and misc files
-chef/cookbooks
 .vagrant
 _obj
 _test

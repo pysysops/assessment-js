@@ -17,6 +17,8 @@ Install Vagrant and run:
 ```
 make vagrant
 ```
+You will (eventually) get curl request output. Visit http://localhost:8090 to
+see Jenkins in action.
 
 ## Run the project
 There are 2 ways to run the project, by running `make` you can see:
@@ -46,3 +48,61 @@ an rpm to a yum repo hosted locally.
 * web_01 - An nginx server configured to proxy to the 2 upstream app servers.
 * app_01 - An app server running the Go application with supervisor.
 * app_02 - An app server running the Go application with supervisor.
+
+#### ???-destroy
+Removes the appropriate environment
+
+## Configuration Management
+Chef has been used to configure the servers. Initially I fell into what I can
+only describe as some sort of monolithic cookbook anti-pattern.
+
+I refactored my chef code into more meaningful cookbooks:
+* js-base - base cookbook for application to everything.
+* js-nginx - installs nginx and does some very simple config.
+* js-jenkins - installs and configures Jenkins.
+* js-app - installs everything needed for an "app" server.
+
+I use Berkshelf to manage cookbook dependencies however not knowing the
+environment that this assessment will be run on I have commited the cookbooks
+to this repo.
+
+Wherever possible I've tried to make use of community cookbooks using the js-*
+cookbooks as wrapper cookbooks. Unfortunately the nginx cookbook caused some
+dependency resolution issue that was becoming time consuming to resolve. I had
+to fall back to a very simple recipe (install package, replace config, start service).
+
+### TODO: Tests
+I'd love to spend a few days writing ServerSpec tests for Kitchen...
+
+## Continuous Delivery
+At first it was tempting to just build the Go application on each app server, but
+even having that thought made me uneasy. I wanted to build, package and place the
+application somewhere that it could be deployed as a package rather than built
+by executing scripts or commands via Chef on the app servers. One of the core CI/CD
+principles is that you should deploy the same package or artifact through your
+pipeline to production (here, there is only one environment).
+
+### Jenkins
+I have experience with several CI servers: Bamboo, GoCD, TeamCity and... my
+favourite: Jenkins. Chef configures the Jenkins server and creates one job:
+jjb-update. The jjb-update job checks out this repo and uses Jenkins Job Builder
+to create the app-build, app-package and app-release jobs.
+
+The jobs are configured in a pipeline and trigger as follows:
+
+#### git > app-build > app-package > app-release
+
+The result is an rpm package in a yum repo available from the app servers.
+
+To view the Jenkins Dashboard open: http://localhost:8090 in your browser of choice.
+
+## Code Changes
+The original Go application was very simple but I wanted to make a few changes:
+* Very simple logging to STDOUT to help in debugging
+* Make the port it runs on an environment variable (default: 8484).
+
+
+## TODO - Deployments
+Ideally it would be great to trigger a deployment of a new artifact (yum package)
+from Jenkins with Ansible or even something as simple as pssh. I believe this is
+outside of the scope of this MVP.
