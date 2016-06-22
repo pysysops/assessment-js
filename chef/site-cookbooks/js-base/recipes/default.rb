@@ -1,6 +1,10 @@
 #
-# Cookbook Name:: main
+# Cookbook Name:: js-base
 # Recipe:: default
+#
+# Copyright (C) 2016 YOUR_NAME
+#
+# All rights reserved - Do Not Redistribute
 #
 
 # Assuming we are using only CentOS

@@ -3,6 +3,6 @@
   "description": "App server role",
   "run_list": [
     "role[base]",
-    "recipe[golang]"
+    "recipe[js-app]"
   ]
 }

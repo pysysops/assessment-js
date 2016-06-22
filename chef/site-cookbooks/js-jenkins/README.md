@@ -1,4 +1,4 @@
-# main-cookbook
+# js-jenkins-cookbook
 
 TODO: Enter the cookbook description here.
 
@@ -16,7 +16,7 @@ TODO: List your supported platforms.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['main']['bacon']</tt></td>
+    <td><tt>['js-jenkins']['bacon']</tt></td>
     <td>Boolean</td>
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
@@ -25,14 +25,14 @@ TODO: List your supported platforms.
 
 ## Usage
 
-### main::default
+### js-jenkins::default
 
-Include `main` in your node's `run_list`:
+Include `js-jenkins` in your node's `run_list`:
 
 ```json
 {
   "run_list": [
-    "recipe[main::default]"
+    "recipe[js-jenkins::default]"
   ]
 }
 ```

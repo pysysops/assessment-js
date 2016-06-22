@@ -1,0 +1,11 @@
+name             'js-jenkins'
+maintainer       'YOUR_NAME'
+maintainer_email 'YOUR_EMAIL'
+license          'All rights reserved'
+description      'Installs/Configures js-jenkins'
+long_description 'Installs/Configures js-jenkins'
+version          '0.1.0'
+
+depends 'golang', '~> 1.7.0'
+depends 'jenkins', '~> 2.6.0'
+depends 'poise-python', '~> 1.4.0'

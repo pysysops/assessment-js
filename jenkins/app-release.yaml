@@ -23,8 +23,6 @@
       - artifact-deployer:
           entries:
             - files: '*.rpm'
-            - basedir: '/opt/data'
-            - remote: '/var/www/html/repo'
-            - flatten: true
+            - remote: '/var/www/html/repo/'
             - fail-no-files: true
           deploy-if-fail: false
