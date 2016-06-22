@@ -13,3 +13,12 @@ directory '/var/www/html/repo' do
   mode '0755'
   action :create
 end
+
+cookbook_file '/etc/nginx/nginx.conf' do
+  source 'yumrepo_nginx.conf'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  action :create
+  notifies :restart, 'service[nginx]'
+end
