@@ -110,4 +110,4 @@ Ideally it would be great to trigger a deployment of a new artifact (yum package
 from Jenkins with Ansible or even something as simple as pssh. I believe this is
 outside of the scope of this MVP.
 
-# Note - Everything has bene thrown into one single repo for simplicity of assessment in reality, this repo should be split into multiple repositories.
+# Note - Everything has bene thrown into one single repo for simplicity of assessment. In reality, this repo would be split into multiple repositories.
