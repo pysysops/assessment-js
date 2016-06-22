@@ -62,6 +62,9 @@ I refactored my chef code into more meaningful cookbooks:
 * js-jenkins - installs and configures Jenkins.
 * js-app - installs everything needed for an "app" server.
 
+Breaking out to separate cookbooks would make it easier to change and test
+changes of cookbooks in different environments.
+
 I use Berkshelf to manage cookbook dependencies however not knowing the
 environment that this assessment will be run on I have commited the cookbooks
 to this repo.
@@ -106,3 +109,5 @@ The original Go application was very simple but I wanted to make a few changes:
 Ideally it would be great to trigger a deployment of a new artifact (yum package)
 from Jenkins with Ansible or even something as simple as pssh. I believe this is
 outside of the scope of this MVP.
+
+# Note - Everything has bene thrown into one single repo for simplicity of assessment in reality, this repo should be split into multiple repositories. 
