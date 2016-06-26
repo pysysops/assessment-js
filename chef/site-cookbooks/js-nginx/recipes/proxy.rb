@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe 'js-nginx::default'
+
 template '/etc/nginx/conf.d/nginx-proxy.conf' do
   source 'nginx-proxy.erb'
   mode '0644'
