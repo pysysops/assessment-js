@@ -25,7 +25,7 @@ docker-destroy:
 	docker-compose down
 
 vagrant:
-	vagrant up
+	vagrant up --provision
 	@echo
 	curl localhost:8080
 	@echo

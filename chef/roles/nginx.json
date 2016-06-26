@@ -13,7 +13,6 @@
   },
   "run_list": [
     "role[base]",
-    "recipe[js-nginx]",
     "recipe[js-nginx::proxy]"
   ]
 }

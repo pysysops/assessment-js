@@ -8,10 +8,16 @@
       }
     }
   },
+  "override_attributes": {
+    "js-nginx": {
+      "yumrepo": {
+        "owner": "jenkins"
+      }
+    }
+  },
   "run_list": [
     "role[base]",
-    "recipe[js-nginx]",
     "recipe[js-jenkins]",
-    "recipe[js-jenkins::yumrepo]"
+    "recipe[js-nginx::yumrepo]"
   ]
 }
